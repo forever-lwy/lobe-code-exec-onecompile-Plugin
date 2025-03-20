@@ -2,48 +2,68 @@
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "api": [
     {
-      "name": "Bingsearch",
-      "url": "https://bingsearch-plugin.vercel.app/api/v2",
-      "description": "基于bing搜索引擎的互联网搜索",
+      "name": "CodeExecutor",
+      "url": "https://codeexec-plugin.vercel.app/api/v2",
+      "description": "运行并执行各种编程语言的代码",
       "parameters": {
         "properties": {
-          "query": {
-            "description": "搜索的文本内容",
+          "language": {
+            "description": "编程语言，例如：python, java, javascript",
             "type": "string"
+          },
+          "stdin": {
+            "description": "标准输入数据（可选）",
+            "type": "string"
+          },
+          "files": {
+            "description": "包含代码的文件数组",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "文件名",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "文件内容",
+                  "type": "string"
+                }
+              },
+              "required": ["name", "content"]
+            }
           }
         },
-        "required": ["query"],
+        "required": ["language", "files"],
         "type": "object"
       }
     }
   ],
   "settings": {
     "type": "object",
-    "required": ["BING_API_KEY"],
+    "required": ["RAPIDAPI_KEY"],
     "properties": {
-      "BING_API_KEY": {
-        "title": "Bingsearch API Key",
-        "description": "we use [Bingsearch](https://www.microsoft.com/en-us/bing/apis) as backend service | 该插件使用 Bingsearchapi 作为搜索服务",
+      "RAPIDAPI_KEY": {
+        "title": "RapidAPI Key",
+        "description": "我们使用 [OneCompiler API](https://rapidapi.com/onecompiler-onecompiler-default/api/onecompiler-apis) 作为后端服务 | We use OneCompiler API as the backend service",
         "type": "string",
-        "minLength": 32,
-        "maxLength": 32,
         "format": "password"
       }
     }
   },
   "ui": {
-    "url": "https://bingsearch-plugin.vercel.app/ui",
+    "url": "https://codeexec-plugin.vercel.app/ui",
     "height": 400
   },
   "author": "ZWL_FineHow",
   "createdAt": "2024-11-21",
-  "homepage": "https://github.com/FineHow/Bingsearch-Plugin",
-  "identifier": "Bingsea",
+  "homepage": "https://github.com/FineHow/CodeExec-Plugin",
+  "identifier": "CodeExecutor",
   "meta": {
-    "avatar": "🚀",
-    "tags": ["Bingsearch"],
-    "title": "Bing联网搜777索",
-    "description": "基于bing搜索引擎的互联网搜索助手"
+    "avatar": "💻",
+    "tags": ["CodeExecution"],
+    "title": "代码执行器",
+    "description": "运行并执行各种编程语言的代码"
   },
   "version": "1"
 }

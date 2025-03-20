@@ -93,3 +93,23 @@ interface Top {
 interface DetectedExtensions {
   month_ago: number;
 }
+
+export interface File {
+  name: string;
+  content: string;
+}
+
+export interface ExecutionRequest {
+  language: string;
+  stdin?: string;
+  files: File[];
+}
+
+export interface ExecutionResult {
+  status: string;
+  exception?: string;
+  stdout?: string;
+  stderr?: string;
+  executionTime?: number;
+  stdin?: string;
+}

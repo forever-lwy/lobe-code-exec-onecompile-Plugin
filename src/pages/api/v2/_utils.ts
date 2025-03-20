@@ -1,46 +1,42 @@
-// import { Logo } from '@lobehub/ui';
 import fetch from 'node-fetch';
 
-import { Result, bingResults } from './type';
+import { ExecutionRequest, ExecutionResult } from './type';
 import { Settings } from './_types';
 
-const BASE_URL = 'https://api.bing.microsoft.com/v7.0/search';
+const BASE_URL = 'https://onecompiler-apis.p.rapidapi.com/api/v1/run';
 
-const fetchResult = async (args: { query: string }, settings: Settings): Promise<Result> => {
-  const apiKey = settings.BING_API_KEY;
-  const { default: querystring } = await import('query-string');
-  console.log('APIKEY', apiKey);
-  const params = {
-    q: args.query,
-    safeSearch:"Strict",
+const runner = async (args: ExecutionRequest, settings: Settings): Promise<ExecutionResult> => {
+  const apiKey = settings.RAPIDAPI_KEY;
 
-  };
-  const query = querystring.stringify(params);
   if (!apiKey) {
-    throw new Error('API key is missing');
+    throw new Error('RapidAPI key is missing');
   }
 
-  const res = await fetch(`${BASE_URL}?${query}`, {
-    headers: {
-      'Ocp-Apim-Subscription-Key': apiKey,
-    },
-    method: 'GET',
-  });
-  if (!res.ok) {
-    throw new Error(`Bing API request failed with status: ${res.status}`);
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': 'onecompiler-apis.p.rapidapi.com',
+      },
+      body: JSON.stringify({
+        language: args.language,
+        stdin: args.stdin || '',
+        files: args.files,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`OneCompiler API request failed with status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data as ExecutionResult;
+  } catch (error) {
+    console.error('Error executing code:', error);
+    throw error;
   }
-  const data = await res.json();
-  const results = data.webPages.value as bingResults;  
-  const cc = results.map((info) => ({
-    content: info.snippet,
-    date: info.datePublished,
-    // displayed_link: info.displayUrl ,
-    link: info.url,
-    source: info.siteName ,
-    title: info.name,
-  }));
-  console.log('数据结构:', cc);
-  return cc;
 };
 
-export default fetchResult;
+export default runner;

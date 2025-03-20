@@ -3,18 +3,18 @@
     {
       "author": "SY",
       "createdAt": "2024-12-22",
-      "homepage": "https://github.com/FineHow/Bingsearch-Plugin",
-      "identifier": "Bingsearch-identifier",
-      "manifest": "https://bingsearch-plugin.vercel.app/manifest.json",
+      "homepage": "https://github.com/FineHow/CodeExec-Plugin",
+      "identifier": "code-executor-identifier",
+      "manifest": "https://codeexec-plugin.vercel.app/manifest.json",
       "meta": {
-        "avatar": "🚀",
-        "tags": ["Bingsearch"],
-        "title": "Bing联网搜索",
-        "description": "基于bing搜索引擎的互联网搜索助手"
+        "avatar": "💻",
+        "tags": ["CodeExecution"],
+        "title": "代码执行器",
+        "description": "运行并执行各种编程语言的代码"
       },
       "schemaVersion": 1
     }
   ],
   "schemaVersion": 1,
-  "tags": ["search"]
+  "tags": ["development"]
 }

@@ -1,3 +1,4 @@
 export interface Settings {
   BING_API_KEY: string;
+  RAPIDAPI_KEY: string;
 }
