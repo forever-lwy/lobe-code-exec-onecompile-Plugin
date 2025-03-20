@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { Card, Typography, Alert, Tag, Spin } from "antd";
-import { usePluginState } from '@lobehub/chat-plugin-sdk';
+import { usePluginState } from '@lobehub/chat-plugin-sdk/client';
 
 const { Title, Text } = Typography;
 
