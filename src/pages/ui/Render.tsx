@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { Card, Typography, Alert, Tag, Spin } from "antd";
-import { useWatchPluginMessage } from '@lobehub/chat-plugin-sdk';
+import { usePluginState } from '@lobehub/chat-plugin-sdk';
 
 const { Title, Text } = Typography;
 
 const Render = memo(() => {
-  const { data, loading } = useWatchPluginMessage();
+  const { state: data, loading } = usePluginState();
   
   if (loading) {
     return (
