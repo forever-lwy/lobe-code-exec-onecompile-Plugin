@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { Card, Typography, Alert, Tag, Spin } from "antd";
 import { usePluginState } from '@lobehub/chat-plugin-sdk/client';
@@ -6,7 +6,14 @@ import { usePluginState } from '@lobehub/chat-plugin-sdk/client';
 const { Title, Text } = Typography;
 
 const Render = memo(() => {
-  const { state: data, loading } = usePluginState();
+  const [data, setData] = usePluginState('executionResult', null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    if (data !== null) {
+      setLoading(false);
+    }
+  }, [data]);
   
   if (loading) {
     return (
