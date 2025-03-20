@@ -19,6 +19,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@lobehub/lint": "^1.0.0",
     "@types/node": "^20",
     "@types/node-fetch": "^2.6.4",
     "@types/react": "^18",

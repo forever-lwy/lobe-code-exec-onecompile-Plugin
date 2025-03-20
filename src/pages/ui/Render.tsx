@@ -1,7 +1,6 @@
-import { useWatchPluginMessage } from '@lobehub/chat-plugin-sdk/client';
 import { memo } from 'react';
 import { Flexbox } from 'react-layout-kit';
-import { Card, Divider, Typography, Alert, Tag, Spin } from "antd";
+import { Card, Typography, Alert, Tag, Spin } from "antd";
 
 const { Title, Paragraph, Text } = Typography;
 
