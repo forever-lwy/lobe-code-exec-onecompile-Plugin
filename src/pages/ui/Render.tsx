@@ -6,7 +6,7 @@ import { usePluginState } from '@lobehub/chat-plugin-sdk/client';
 const { Title, Text } = Typography;
 
 const Render = memo(() => {
-  const [data, setData] = usePluginState('executionResult', null);
+  const [data] = usePluginState('executionResult', null);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
